@@ -17,7 +17,8 @@ Dataset | Size | Features | Label Field | Link |
 | Sentiment Analysis Dataset on Kaggle| N/A| Tweet text, polarity labels| Polarity labels|[Link](https://www.kaggle.com/kazanova/sentiment140)|
 | Stock Sentiment Analysis Dataset| 1000 discussions| Social media discussions of publicly traded stocks| Positive or negative sentiment associated with each discussion|[Link](https://www.kaggle.com/yash612/stockmarket-sentiment-dataset)|
 | Webis-CLS-10 Dataset| 800,000 Amazon product reviews|^13^Product reviews in English, German, French and Japanese languages|^13^N/A|^13^[Link](https://webis.de/data/webis-cls-10.html)|
-
+| UTKML Twitter Spam Detection Competition Dataset | N/A | Tweet text, user information, tweet metadata | Binary spam labels | [Link](https://www.kaggle.com/c/utkmls-twitter-spam-detection-competition) |
+| Hate Speech and Offensive Language Dataset | 24,783 tweets | Tweet text, class labels, confidence scores | Class labels (hate speech, offensive language, neither) | [Link](https://www.kaggle.com/datasets/mrmorj/hate-speech-and-offensive-language-dataset) |
 
 For the common dataset evaluation by the models, the expected struture of the datasets is [Message, Score]
 
