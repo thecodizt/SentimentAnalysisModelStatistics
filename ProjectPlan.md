@@ -1,4 +1,4 @@
-# Statistical Analysis of Machine Learning Models for Sentiment Analysis in Social Media Texts
+# Statistical Analysis of Machine Learning Models for Text Classification and Sentiment Analysis in Social Media Messages
 
 ## Datasets
 
