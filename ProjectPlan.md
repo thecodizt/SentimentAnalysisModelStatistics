@@ -77,6 +77,7 @@ There are many machine learning and deep learning models that can be used for te
 - **Logistic Regression**
 - **Decision Trees**
 - **Random Forests**
+
 Some popular deep learning models for text classification include:
 
 - **Convolutional Neural Networks (CNN)**
