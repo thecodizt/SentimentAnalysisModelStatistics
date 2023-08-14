@@ -18,36 +18,6 @@ Label Field
 
 Link
 
-Stanford Sentiment Treebank
-
-215,154 unique phrases
-
-Sentiment labels, parse trees
-
-Sentiment labels
-
-[﻿Link](https://nlp.stanford.edu/sentiment/treebank.html) 
-
-Amazon Product Data
-
-142.8 million reviews
-
-Reviews, product metadata, links
-
-Star ratings
-
-[﻿Link](http://jmcauley.ucsd.edu/data/amazon/) 
-
-Multi-Domain Sentiment Dataset
-
-Varies by domain
-
-Product reviews, star ratings
-
-Star ratings
-
-[﻿Link](https://www.cs.jhu.edu/~mdredze/datasets/sentiment/) 
-
 IMDB Movie Reviews Dataset
 
 50,000 reviews
@@ -67,16 +37,6 @@ Tweet text, polarity labels
 Polarity labels
 
 [﻿Link](http://help.sentiment140.com/for-students) 
-
-Newsdata.io news dataset
-
-Varies by query
-
-News articles, metadata
-
-N/A
-
-[﻿Link](https://newsdata.io/) 
 
 SES: Sentiment Elicitation System for Social Media Data
 
