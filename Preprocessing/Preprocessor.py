@@ -13,6 +13,15 @@ from nltk.stem import WordNetLemmatizer
 lm = WordNetLemmatizer()
 nltk.download('wordnet')
 
+# ## NLP Workflow
+
+# - Lower casing
+# - Tokenization
+# - Punctuation removal
+# - Stopwords removal
+# - Stemming
+# - Lemmatization
+
 def preprocess(text):
 
     #remove non alphabetic characters
