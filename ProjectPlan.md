@@ -5,8 +5,6 @@
 
 ![Workflow](/.eraser/kPrQ6JQHz5C8prYF90mp___NSX35knPbzTDJN8ATbww765SbPq2___---figure---cDuEHRqfL0zeXrqh4qoPK---figure---t-Uwyplr5444steHVcCy5g.png "Workflow")
 
-
-
 ## Datasets
 Dataset
 
@@ -38,26 +36,6 @@ Polarity labels
 
 [﻿Link](http://help.sentiment140.com/for-students) 
 
-SES: Sentiment Elicitation System for Social Media Data
-
-N/A
-
-N/A
-
-N/A
-
-[﻿Link](https://cucis.eecs.northwestern.edu/projects/DMS/publications.html) 
-
-Mining Millions of Reviews: A Technique to Rank Products Based on Importance of Reviews
-
-N/A
-
-N/A
-
-N/A
-
-[﻿Link](https://cucis.eecs.northwestern.edu/projects/DMS/publications.html) 
-
 Twitter US Airline Sentiment Dataset
 
 14,640 instances
@@ -67,48 +45,6 @@ Tweet text, sentiment labels, negative reasons
 Sentiment labels
 
 [﻿Link](https://www.kaggle.com/crowdflower/twitter-airline-sentiment) 
-
-Yelp Dataset
-
-6,990,280 reviews
-
-Reviews, business information, user information, check-ins
-
-Star ratings
-
-[﻿Link](https://www.yelp.com/dataset) 
-
-Sentiment Analysis Dataset on Kaggle
-
-N/A
-
-Tweet text, polarity labels
-
-Polarity labels
-
-[﻿Link](https://www.kaggle.com/kazanova/sentiment140) 
-
-Stock Sentiment Analysis Dataset
-
-1000 discussions
-
-Social media discussions of publicly traded stocks
-
-Positive or negative sentiment associated with each discussion
-
-[﻿Link](https://www.kaggle.com/yash612/stockmarket-sentiment-dataset) 
-
-Webis-CLS-10 Dataset
-
-800,000 Amazon product reviews
-
-^13^Product reviews in English, German, French and Japanese languages
-
-^13^N/A
-
-^13^
-
-[﻿Link](https://webis.de/data/webis-cls-10.html) 
 
 UTKML Twitter Spam Detection Competition Dataset
 
@@ -120,7 +56,7 @@ Binary spam labels
 
 [﻿Link](https://www.kaggle.com/c/utkmls-twitter-spam-detection-competition) 
 
-Hate Speech and Offensive Language Dataset
+Hate Speech and Offensive Language Dataset (DONE)
 
 24,783 tweets
 
