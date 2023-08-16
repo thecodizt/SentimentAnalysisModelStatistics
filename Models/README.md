@@ -9,11 +9,7 @@
 - Logistic Regression
 - Decision Trees
 - k-Nearest Neighbors (k-NN)
-- Boosting
-- Bagging
 - AdaBoost
 - Gradient Boosting
-- Voting
-- Stacking
 
 ### OUTPUT FORMAT
