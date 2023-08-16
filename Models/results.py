@@ -1,3 +1,7 @@
+import os
+import matplotlib.pyplot as plt
+from sklearn.metrics import ConfusionMatrixDisplay
+
 from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime
 from sqlalchemy.orm import sessionmaker, declarative_base
 import datetime
@@ -18,13 +22,18 @@ class Result(Base):
     running_time = Column(Integer)
     time_of_execution = Column(DateTime)
 
-def saveResult(dataset, model_name, accuracy, precision, recall, f1Score, running_time):
+import os
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.metrics import ConfusionMatrixDisplay
 
+def saveResult(dataset, model_name, accuracy, precision, recall, f1Score, running_time, confusion_matrix):
     # Create an engine that connects to a SQLite database
     engine = create_engine('sqlite:///results.db')
 
     # Create a session factory
     Session = sessionmaker(bind=engine)
+    
     # Create the table in the database
     Base.metadata.create_all(engine)
 
@@ -51,3 +60,18 @@ def saveResult(dataset, model_name, accuracy, precision, recall, f1Score, runnin
 
     # Close the session
     session.close()
+
+    # Normalize the confusion matrix to show percentages instead of counts
+    cm_normalized = confusion_matrix.astype('float') / confusion_matrix.sum(axis=1)[:, np.newaxis]
+
+    # Create a heatmap of the normalized confusion matrix using matplotlib
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm_normalized)
+    disp.plot(cmap=plt.cm.Blues)
+    plt.title(f'CM: {model_name} - {dataset}')
+
+    # Create the directory if it does not exist
+    os.makedirs('CMResults', exist_ok=True)
+
+    # Save the confusion matrix as an image file in the directory
+    image_filename = f'./CMResults/{dataset}_{model_name}.png'
+    plt.savefig(image_filename)

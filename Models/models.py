@@ -13,6 +13,8 @@ from sklearn.ensemble import GradientBoostingClassifier, RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.neighbors import KNeighborsClassifier
+from xgboost import XGBClassifier
+from sklearn.ensemble import AdaBoostClassifier
 
 def transformText(dataset):
     # Split the dataset into training and test sets
@@ -27,28 +29,19 @@ def transformText(dataset):
 
     return X_train, X_test, y_train, y_test
 
+from sklearn.metrics import confusion_matrix
 
 def runNaiveBayes(dataset, name):
-    
     X_train, X_test, y_train, y_test = transformText(dataset)
 
     # Create a Naive Bayes classifier
     clf = MultinomialNB()
 
-    # Define the hyperparameter grid
-    param_grid = {
-        'alpha': [0.1, 0.5, 1.0],
-        'fit_prior': [True, False]
-    }
-
-    # Create a Grid Search object
-    grid_search = GridSearchCV(clf, param_grid)
-
     # Record the start time
     start_time = time.time()
 
-    # Fit the Grid Search object to the training data
-    grid_search.fit(X_train, y_train)
+    # Fit the classifier to the training data
+    clf.fit(X_train, y_train)
 
     # Record the end time
     end_time = time.time()
@@ -56,11 +49,11 @@ def runNaiveBayes(dataset, name):
     # Calculate the running time
     running_time = end_time - start_time
 
-    # Get the best estimator from the Grid Search
-    best_clf = grid_search.best_estimator_
+    # Make predictions on the test set using the classifier
+    y_pred = clf.predict(X_test)
 
-    # Make predictions on the test set using the best estimator
-    y_pred = best_clf.predict(X_test)
+    # Calculate the confusion matrix
+    cm = confusion_matrix(y_test, y_pred)
 
     # Calculate the performance metrics using weighted averaging
     accuracy = accuracy_score(y_test, y_pred)
@@ -77,8 +70,8 @@ def runNaiveBayes(dataset, name):
         recall=recall,
         f1Score=f1Score,
         running_time=running_time,
+        confusion_matrix=cm  # Pass the confusion matrix as an argument
     )
-
 
 def runSVM(dataset, name):
     
@@ -87,22 +80,11 @@ def runSVM(dataset, name):
     # Create an SVM classifier
     clf = SVC()
 
-    # Define the hyperparameter grid
-    param_grid = {
-        'C': [0.1, 1, 10],
-        'kernel': ['linear', 'rbf', 'poly'],
-        'degree': [2, 3, 4],
-        'gamma': ['scale', 'auto']
-    }
-
-    # Create a Randomized Search object
-    random_search = RandomizedSearchCV(clf, param_grid)
-
     # Record the start time
     start_time = time.time()
 
-    # Fit the Randomized Search object to the training data
-    random_search.fit(X_train, y_train)
+    # Fit the classifier to the training data
+    clf.fit(X_train, y_train)
 
     # Record the end time
     end_time = time.time()
@@ -110,11 +92,11 @@ def runSVM(dataset, name):
     # Calculate the running time
     running_time = end_time - start_time
 
-    # Get the best estimator from the Randomized Search
-    best_clf = random_search.best_estimator_
+    # Make predictions on the test set using the classifier
+    y_pred = clf.predict(X_test)
 
-    # Make predictions on the test set using the best estimator
-    y_pred = best_clf.predict(X_test)
+    # Calculate the confusion matrix
+    cm = confusion_matrix(y_test, y_pred)
 
     # Calculate the performance metrics using weighted averaging
     accuracy = accuracy_score(y_test, y_pred)
@@ -131,10 +113,10 @@ def runSVM(dataset, name):
         recall=recall,
         f1Score=f1Score,
         running_time=running_time,
+        confusion_matrix=cm  # Pass the confusion matrix as an argument
     )
-    
+
 def runHMM(dataset, name):
-    
     X_train, X_test, y_train, y_test = transformText(dataset)
 
     # Convert the training and test data from sparse matrices to dense numpy arrays
@@ -144,20 +126,11 @@ def runHMM(dataset, name):
     # Create an HMM classifier
     clf = hmm.GaussianHMM()
 
-    # Define the hyperparameter grid
-    param_grid = {
-        'n_components': [2, 3, 4],
-        'covariance_type': ['spherical', 'diag', 'tied', 'full']
-    }
-
-    # Create a Randomized Search object
-    random_search = RandomizedSearchCV(clf, param_grid)
-
     # Record the start time
     start_time = time.time()
 
-    # Fit the Grid Search object to the training data
-    random_search.fit(X_train, y_train)
+    # Fit the classifier to the training data
+    clf.fit(X_train, y_train)
 
     # Record the end time
     end_time = time.time()
@@ -165,17 +138,17 @@ def runHMM(dataset, name):
     # Calculate the running time
     running_time = end_time - start_time
 
-    # Get the best estimator from the Grid Search
-    best_clf = random_search.best_estimator_
+    # Make predictions on the test set using the classifier
+    y_pred = clf.predict(X_test)
 
-    # Make predictions on the test set using the best estimator
-    y_pred = best_clf.predict(X_test)
+    # Calculate the confusion matrix
+    cm = confusion_matrix(y_test, y_pred)
 
     # Calculate the performance metrics using weighted averaging
     accuracy = accuracy_score(y_test, y_pred)
     precision = precision_score(y_test, y_pred, average='weighted')
     recall = recall_score(y_test, y_pred, average='weighted')
-    f1Score = f1_score(y_test, y_pred, average='weighted')
+    f1Score = f1_score(y_test,y_pred ,average='weighted')
 
     # Save the results using the save_results function
     saveResult(
@@ -186,6 +159,7 @@ def runHMM(dataset, name):
         recall=recall,
         f1Score=f1Score,
         running_time=running_time,
+        confusion_matrix=cm  # Pass the confusion matrix as an argument
     )
 
 def runGradientBoosting(dataset, name):
@@ -195,22 +169,11 @@ def runGradientBoosting(dataset, name):
     # Create a Gradient Boosting classifier
     clf = GradientBoostingClassifier()
 
-    # Define the hyperparameter grid
-    param_grid = {
-        'n_estimators': [100, 200, 300],
-        'learning_rate': [0.1, 0.01, 0.001],
-        'max_depth': [3, 5, 7],
-        'subsample': [0.5, 0.8, 1.0]
-    }
-
-    # Create a Randomized Search object
-    random_search = RandomizedSearchCV(clf, param_grid)
-
     # Record the start time
     start_time = time.time()
 
-    # Fit the Randomized Search object to the training data
-    random_search.fit(X_train, y_train)
+    # Fit the classifier to the training data
+    clf.fit(X_train, y_train)
 
     # Record the end time
     end_time = time.time()
@@ -218,11 +181,11 @@ def runGradientBoosting(dataset, name):
     # Calculate the running time
     running_time = end_time - start_time
 
-    # Get the best estimator from the Randomized Search
-    best_clf = random_search.best_estimator_
+    # Make predictions on the test set using the classifier
+    y_pred = clf.predict(X_test)
 
-    # Make predictions on the test set using the best estimator
-    y_pred = best_clf.predict(X_test)
+    # Calculate the confusion matrix
+    cm = confusion_matrix(y_test, y_pred)
 
     # Calculate the performance metrics using weighted averaging
     accuracy = accuracy_score(y_test, y_pred)
@@ -239,32 +202,20 @@ def runGradientBoosting(dataset, name):
         recall=recall,
         f1Score=f1Score,
         running_time=running_time,
+        confusion_matrix=cm  # Pass the confusion matrix as an argument
     )
 
-
 def runRandomForest(dataset, name):
-    
     X_train, X_test, y_train, y_test = transformText(dataset)
 
     # Create a Random Forest classifier
     clf = RandomForestClassifier()
 
-    # Define the hyperparameter grid
-    param_grid = {
-        'n_estimators': [100, 200, 300],
-        'max_depth': [3, 5, 7],
-        'min_samples_split': [2, 5],
-        'min_samples_leaf': [1, 2]
-    }
-
-    # Create a Randomized Search object
-    random_search = RandomizedSearchCV(clf, param_grid)
-
     # Record the start time
     start_time = time.time()
 
-    # Fit the Randomized Search object to the training data
-    random_search.fit(X_train, y_train)
+    # Fit the classifier to the training data
+    clf.fit(X_train, y_train)
 
     # Record the end time
     end_time = time.time()
@@ -272,17 +223,17 @@ def runRandomForest(dataset, name):
     # Calculate the running time
     running_time = end_time - start_time
 
-    # Get the best estimator from the Randomized Search
-    best_clf = random_search.best_estimator_
+    # Make predictions on the test set using the classifier
+    y_pred = clf.predict(X_test)
 
-    # Make predictions on the test set using the best estimator
-    y_pred = best_clf.predict(X_test)
+    # Calculate the confusion matrix
+    cm = confusion_matrix(y_test, y_pred)
 
     # Calculate the performance metrics using weighted averaging
     accuracy = accuracy_score(y_test, y_pred)
     precision = precision_score(y_test, y_pred, average='weighted')
     recall = recall_score(y_test, y_pred, average='weighted')
-    f1Score = f1_score(y_test, y_pred, average='weighted')
+    f1Score = f1_score(y_test,y_pred ,average='weighted')
 
     # Save the results using the save_results function
     saveResult(
@@ -293,8 +244,8 @@ def runRandomForest(dataset, name):
         recall=recall,
         f1Score=f1Score,
         running_time=running_time,
+        confusion_matrix=cm  # Pass the confusion matrix as an argument
     )
-
 
 def runLogisticRegression(dataset, name):
     
@@ -303,21 +254,11 @@ def runLogisticRegression(dataset, name):
     # Create a Logistic Regression classifier
     clf = LogisticRegression()
 
-    # Define the hyperparameter grid
-    param_grid = {
-        'C': [0.1, 1, 10],
-        'penalty': ['l1', 'l2'],
-        'solver': ['liblinear', 'saga']
-    }
-
-    # Create a Randomized Search object
-    random_search = RandomizedSearchCV(clf, param_grid)
-
     # Record the start time
     start_time = time.time()
 
-    # Fit the Randomized Search object to the training data
-    random_search.fit(X_train, y_train)
+    # Fit the classifier to the training data
+    clf.fit(X_train, y_train)
 
     # Record the end time
     end_time = time.time()
@@ -325,17 +266,17 @@ def runLogisticRegression(dataset, name):
     # Calculate the running time
     running_time = end_time - start_time
 
-    # Get the best estimator from the Randomized Search
-    best_clf = random_search.best_estimator_
+    # Make predictions on the test set using the classifier
+    y_pred = clf.predict(X_test)
 
-    # Make predictions on the test set using the best estimator
-    y_pred = best_clf.predict(X_test)
+    # Calculate the confusion matrix
+    cm = confusion_matrix(y_test, y_pred)
 
     # Calculate the performance metrics using weighted averaging
     accuracy = accuracy_score(y_test, y_pred)
     precision = precision_score(y_test, y_pred, average='weighted')
-    recall = recall_score(y_test, y_pred, average='weighted')
-    f1Score = f1_score(y_test, y_pred, average='weighted')
+    recall = recall_score(y_test,y_pred ,average='weighted')
+    f1Score=f1_score(y_test,y_pred ,average='weighted')
 
     # Save the results using the save_results function
     saveResult(
@@ -346,31 +287,20 @@ def runLogisticRegression(dataset, name):
         recall=recall,
         f1Score=f1Score,
         running_time=running_time,
+        confusion_matrix=cm  # Pass the confusion matrix as an argument
     )
 
-
 def runDecisionTree(dataset, name):
-    
     X_train, X_test, y_train, y_test = transformText(dataset)
 
     # Create a Decision Tree classifier
     clf = DecisionTreeClassifier()
 
-    # Define the hyperparameter grid
-    param_grid = {
-        'max_depth': [3, 5, 7],
-        'min_samples_split': [2, 5],
-        'min_samples_leaf': [1, 2]
-    }
-
-    # Create a Randomized Search object
-    random_search = RandomizedSearchCV(clf, param_grid)
-
     # Record the start time
     start_time = time.time()
 
-    # Fit the Randomized Search object to the training data
-    random_search.fit(X_train, y_train)
+    # Fit the classifier to the training data
+    clf.fit(X_train, y_train)
 
     # Record the end time
     end_time = time.time()
@@ -378,11 +308,11 @@ def runDecisionTree(dataset, name):
     # Calculate the running time
     running_time = end_time - start_time
 
-    # Get the best estimator from the Randomized Search
-    best_clf = random_search.best_estimator_
+    # Make predictions on the test set using the classifier
+    y_pred = clf.predict(X_test)
 
-    # Make predictions on the test set using the best estimator
-    y_pred = best_clf.predict(X_test)
+    # Calculate the confusion matrix
+    cm = confusion_matrix(y_test, y_pred)
 
     # Calculate the performance metrics using weighted averaging
     accuracy = accuracy_score(y_test, y_pred)
@@ -399,8 +329,8 @@ def runDecisionTree(dataset, name):
         recall=recall,
         f1Score=f1Score,
         running_time=running_time,
+        confusion_matrix=cm  # Pass the confusion matrix as an argument
     )
-
 
 def runKNN(dataset,name):
     
@@ -408,31 +338,24 @@ def runKNN(dataset,name):
     
     clf=KNeighborsClassifier()
     
-    param_grid={
-        'n_neighbors':[3,5],
-        'weights':['uniform','distance'],
-        'algorithm':['auto','ball_tree','kd_tree','brute']
-    }
-    
-    random_search=RandomizedSearchCV(clf,param_grid)
-    
     start_time=time.time()
     
-    random_search.fit(X_train,y_train)
+    clf.fit(X_train,y_train)
     
     end_time=time.time()
     
     running_time=end_time-start_time
     
-    best_clf=random_search.best_estimator_
+    y_pred=clf.predict(X_test)
     
-    y_pred=best_clf.predict(X_test)
-    
+    # Calculate the confusion matrix
+    cm = confusion_matrix(y_test, y_pred)
+
     accuracy=accuracy_score(y_test,y_pred)
-    precision=precision_score(y_test,y_pred)
-    recall=recall_score(y_test,y_pred)
-    f1Score=f1_score(y_test,y_pred)
-    
+    precision = precision_score(y_test, y_pred, average='weighted')
+    recall = recall_score(y_test, y_pred, average='weighted')
+    f1Score = f1_score(y_test, y_pred, average='weighted')
+
     saveResult(
         dataset=name,
         model_name='KNN',
@@ -441,4 +364,74 @@ def runKNN(dataset,name):
         recall=recall,
         f1Score=f1Score,
         running_time=running_time,
+        confusion_matrix=cm  # Pass the confusion matrix as an argument
     )
+
+def runXGBoost(dataset, name):
+    X_train, X_test, y_train, y_test = transformText(dataset)
+    
+    clf = XGBClassifier()
+    
+    start_time = time.time()
+    
+    clf.fit(X_train, y_train)
+    
+    end_time = time.time()
+    
+    running_time = end_time - start_time
+    
+    y_pred = clf.predict(X_test)
+    
+    # Calculate the confusion matrix
+    cm = confusion_matrix(y_test, y_pred)
+
+    accuracy = accuracy_score(y_test, y_pred)
+    precision = precision_score(y_test, y_pred, average='weighted')
+    recall = recall_score(y_test, y_pred, average='weighted')
+    f1Score = f1_score(y_test, y_pred, average='weighted')
+
+    saveResult(
+        dataset=name,
+        model_name='XGBoost',
+        accuracy=accuracy,
+        precision=precision,
+        recall=recall,
+        f1Score=f1Score,
+        running_time=running_time,
+        confusion_matrix=cm  # Pass the confusion matrix as an argument
+    )
+
+def runAdaBoost(dataset, name):
+    X_train, X_test, y_train, y_test = transformText(dataset)
+    
+    clf = AdaBoostClassifier()
+    
+    start_time = time.time()
+    
+    clf.fit(X_train, y_train)
+    
+    end_time = time.time()
+    
+    running_time = end_time - start_time
+    
+    y_pred = clf.predict(X_test)
+    
+    # Calculate the confusion matrix
+    cm = confusion_matrix(y_test, y_pred)
+
+    accuracy = accuracy_score(y_test, y_pred)
+    precision = precision_score(y_test, y_pred, average='weighted')
+    recall = recall_score(y_test, y_pred, average='weighted')
+    f1Score = f1_score(y_test, y_pred, average='weighted')
+
+    saveResult(
+        dataset=name,
+        model_name='AdaBoost',
+        accuracy=accuracy,
+        precision=precision,
+        recall=recall,
+        f1Score=f1Score,
+        running_time=running_time,
+        confusion_matrix=cm  # Pass the confusion matrix as an argument
+    )
+
