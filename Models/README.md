@@ -4,7 +4,6 @@
 
 - Naïve Bayes
 - Support Vector Machines (SVM)
-- Hidden Markov Model (HMM)
 - Gradient Boosting Trees
 - Random Forests
 - Logistic Regression
