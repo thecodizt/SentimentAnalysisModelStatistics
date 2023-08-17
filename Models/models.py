@@ -55,11 +55,11 @@ def runNaiveBayes(dataset, name):
     # Calculate the confusion matrix
     cm = confusion_matrix(y_test, y_pred)
 
-    # Calculate the performance metrics using weighted averaging
+    # Calculate the performance metrics using macro averaging
     accuracy = accuracy_score(y_test, y_pred)
-    precision = precision_score(y_test, y_pred, average='weighted')
-    recall = recall_score(y_test, y_pred, average='weighted')
-    f1Score = f1_score(y_test, y_pred, average='weighted')
+    precision = precision_score(y_test, y_pred, average='macro')
+    recall = recall_score(y_test, y_pred, average='macro')
+    f1Score = f1_score(y_test, y_pred, average='macro')
 
     # Save the results using the save_results function
     saveResult(
@@ -98,11 +98,11 @@ def runSVM(dataset, name):
     # Calculate the confusion matrix
     cm = confusion_matrix(y_test, y_pred)
 
-    # Calculate the performance metrics using weighted averaging
+    # Calculate the performance metrics using macro averaging
     accuracy = accuracy_score(y_test, y_pred)
-    precision = precision_score(y_test, y_pred, average='weighted')
-    recall = recall_score(y_test, y_pred, average='weighted')
-    f1Score = f1_score(y_test, y_pred, average='weighted')
+    precision = precision_score(y_test, y_pred, average='macro')
+    recall = recall_score(y_test, y_pred, average='macro')
+    f1Score = f1_score(y_test, y_pred, average='macro')
 
     # Save the results using the save_results function
     saveResult(
@@ -144,11 +144,11 @@ def runHMM(dataset, name):
     # Calculate the confusion matrix
     cm = confusion_matrix(y_test, y_pred)
 
-    # Calculate the performance metrics using weighted averaging
+    # Calculate the performance metrics using macro averaging
     accuracy = accuracy_score(y_test, y_pred)
-    precision = precision_score(y_test, y_pred, average='weighted')
-    recall = recall_score(y_test, y_pred, average='weighted')
-    f1Score = f1_score(y_test,y_pred ,average='weighted')
+    precision = precision_score(y_test, y_pred, average='macro')
+    recall = recall_score(y_test, y_pred, average='macro')
+    f1Score = f1_score(y_test,y_pred ,average='macro')
 
     # Save the results using the save_results function
     saveResult(
@@ -187,11 +187,11 @@ def runGradientBoosting(dataset, name):
     # Calculate the confusion matrix
     cm = confusion_matrix(y_test, y_pred)
 
-    # Calculate the performance metrics using weighted averaging
+    # Calculate the performance metrics using macro averaging
     accuracy = accuracy_score(y_test, y_pred)
-    precision = precision_score(y_test, y_pred, average='weighted')
-    recall = recall_score(y_test, y_pred, average='weighted')
-    f1Score = f1_score(y_test, y_pred, average='weighted')
+    precision = precision_score(y_test, y_pred, average='macro')
+    recall = recall_score(y_test, y_pred, average='macro')
+    f1Score = f1_score(y_test, y_pred, average='macro')
 
     # Save the results using the save_results function
     saveResult(
@@ -229,11 +229,11 @@ def runRandomForest(dataset, name):
     # Calculate the confusion matrix
     cm = confusion_matrix(y_test, y_pred)
 
-    # Calculate the performance metrics using weighted averaging
+    # Calculate the performance metrics using macro averaging
     accuracy = accuracy_score(y_test, y_pred)
-    precision = precision_score(y_test, y_pred, average='weighted')
-    recall = recall_score(y_test, y_pred, average='weighted')
-    f1Score = f1_score(y_test,y_pred ,average='weighted')
+    precision = precision_score(y_test, y_pred, average='macro')
+    recall = recall_score(y_test, y_pred, average='macro')
+    f1Score = f1_score(y_test,y_pred ,average='macro')
 
     # Save the results using the save_results function
     saveResult(
@@ -272,11 +272,11 @@ def runLogisticRegression(dataset, name):
     # Calculate the confusion matrix
     cm = confusion_matrix(y_test, y_pred)
 
-    # Calculate the performance metrics using weighted averaging
+    # Calculate the performance metrics using macro averaging
     accuracy = accuracy_score(y_test, y_pred)
-    precision = precision_score(y_test, y_pred, average='weighted')
-    recall = recall_score(y_test,y_pred ,average='weighted')
-    f1Score=f1_score(y_test,y_pred ,average='weighted')
+    precision = precision_score(y_test, y_pred, average='macro')
+    recall = recall_score(y_test,y_pred ,average='macro')
+    f1Score=f1_score(y_test,y_pred ,average='macro')
 
     # Save the results using the save_results function
     saveResult(
@@ -314,11 +314,11 @@ def runDecisionTree(dataset, name):
     # Calculate the confusion matrix
     cm = confusion_matrix(y_test, y_pred)
 
-    # Calculate the performance metrics using weighted averaging
+    # Calculate the performance metrics using macro averaging
     accuracy = accuracy_score(y_test, y_pred)
-    precision = precision_score(y_test, y_pred, average='weighted')
-    recall = recall_score(y_test, y_pred, average='weighted')
-    f1Score = f1_score(y_test, y_pred, average='weighted')
+    precision = precision_score(y_test, y_pred, average='macro')
+    recall = recall_score(y_test, y_pred, average='macro')
+    f1Score = f1_score(y_test, y_pred, average='macro')
 
     # Save the results using the save_results function
     saveResult(
@@ -352,9 +352,9 @@ def runKNN(dataset,name):
     cm = confusion_matrix(y_test, y_pred)
 
     accuracy=accuracy_score(y_test,y_pred)
-    precision = precision_score(y_test, y_pred, average='weighted')
-    recall = recall_score(y_test, y_pred, average='weighted')
-    f1Score = f1_score(y_test, y_pred, average='weighted')
+    precision = precision_score(y_test, y_pred, average='macro')
+    recall = recall_score(y_test, y_pred, average='macro')
+    f1Score = f1_score(y_test, y_pred, average='macro')
 
     saveResult(
         dataset=name,
@@ -386,9 +386,9 @@ def runXGBoost(dataset, name):
     cm = confusion_matrix(y_test, y_pred)
 
     accuracy = accuracy_score(y_test, y_pred)
-    precision = precision_score(y_test, y_pred, average='weighted')
-    recall = recall_score(y_test, y_pred, average='weighted')
-    f1Score = f1_score(y_test, y_pred, average='weighted')
+    precision = precision_score(y_test, y_pred, average='macro')
+    recall = recall_score(y_test, y_pred, average='macro')
+    f1Score = f1_score(y_test, y_pred, average='macro')
 
     saveResult(
         dataset=name,
@@ -420,9 +420,9 @@ def runAdaBoost(dataset, name):
     cm = confusion_matrix(y_test, y_pred)
 
     accuracy = accuracy_score(y_test, y_pred)
-    precision = precision_score(y_test, y_pred, average='weighted')
-    recall = recall_score(y_test, y_pred, average='weighted')
-    f1Score = f1_score(y_test, y_pred, average='weighted')
+    precision = precision_score(y_test, y_pred, average='macro')
+    recall = recall_score(y_test, y_pred, average='macro')
+    f1Score = f1_score(y_test, y_pred, average='macro')
 
     saveResult(
         dataset=name,
