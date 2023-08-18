@@ -1,6 +1,7 @@
 from sklearn.model_selection import train_test_split, GridSearchCV, RandomizedSearchCV
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
+from sklearn.metrics import confusion_matrix
 import datetime
 import time
 
@@ -29,10 +30,25 @@ def transformText(dataset):
 
     return X_train, X_test, y_train, y_test
 
-from sklearn.metrics import confusion_matrix
+def visualize_vectors(vectors, n_clusters=3):
+    # Reduce the dimensionality of the vectors to 2 using PCA
+    pca = PCA(n_components=2)
+    reduced_vectors = pca.fit_transform(vectors.toarray())
+
+    # Cluster the reduced vectors using KMeans
+    kmeans = KMeans(n_clusters=n_clusters)
+    kmeans.fit(reduced_vectors)
+    labels = kmeans.labels_
+
+    # Plot the reduced vectors on a scatter plot
+    plt.scatter(reduced_vectors[:, 0], reduced_vectors[:, 1], c=labels, cmap='viridis')
+    plt.show()
+
 
 def runNaiveBayes(dataset, name):
     X_train, X_test, y_train, y_test = transformText(dataset)
+
+    visualize_vectors(X_train)
 
     # Create a Naive Bayes classifier
     clf = MultinomialNB()
