@@ -5,7 +5,7 @@
 In this paper, we compare the performance of nine machine learning models for text classification on five different datasets of labelled texts. We use various metrics, such as accuracy, precision, recall, and F1-score, to evaluate the models and analyze their strengths and weaknesses. We also visualize the performance records of the models for each dataset using different charts and metrics to facilitate the comparison and identification of the best-performing model. Moreover, we analyze the performance records using different techniques and methods, such as learning curves, confusion matrices, error analysis, feature importance, and sensitivity analysis, to understand the behavior of the models and diagnose any problems or limitations they may have. We find that the best-performing model depends on the characteristics of the dataset, such as the size, the domain, and the class distribution. We also discuss the implications of our findings for choosing the appropriate model for text classification tasks.
 
 ### DETAILED DESCRIPTION
-![Detailed Description](/.eraser/lzNMy7FTtBIm4YmFxroq___NSX35knPbzTDJN8ATbww765SbPq2___---figure---sAAaApAlHLa99bAhZUjrS---figure---h54_7kJ08OF3WOtLWpSwLw.png "Detailed Description")
+![Detailed Description](/.eraser/lzNMy7FTtBIm4YmFxroq___NSX35knPbzTDJN8ATbww765SbPq2___---figure---up1sMR_PULANFKUy19URq---figure---h54_7kJ08OF3WOtLWpSwLw.png "Detailed Description")
 
 ### KEYWORDS
 - text classification
