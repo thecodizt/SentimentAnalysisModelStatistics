@@ -106,6 +106,22 @@ Here is the literature survey for the papers mentioned in the page:
 | 2019 | BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding | LLM, Transformer, Fine-tuning | Bidirectional language representation, Pre-training on large corpus, Fine-tuning on downstream tasks | GLUE score: 80.5%, MultiNLI accuracy: 86.7%, SQuAD v1.1 F1: 93.2%, SQuAD v2.0 F1: 83.1% | BooksCorpus, Wikipedia, GLUE, MultiNLI, SQuAD | Requires large amount of compute resources, suffers from pretrain-finetune discrepancy, vulnerable to adversarial attacks |
 | 2022 | Text Classification for Predicting Multi-level Product Categories | LLM, Text Classification, SVM, XGBoost | Product title classification, Dynamic masking of subcategories, Bilingual product titles | Accuracy: 0.92 for SVM, 0.93 for XGBoost, 0.96 for BERT-base, 0.97 for BERT-large | Getir dataset (Turkish and English product titles) | Limited to grocery products, requires fine-tuning for each level of categorization, does not consider product descriptions or images |
 
+Here are the six points under software engineering design from the current web page context in a 3x2 table format:
+
+| Mobile Frontend Architecture | Backend Architecture |
+| :--------------------------: | :------------------: |
+| Cross-platform framework (React Native or Flutter) | Scalable technology (Node.js or Django) |
+| QR code scanning library (react-native-camera) | Processing of data received from QR codes |²[2]
+
+| Database Architecture | Microservices Architecture |
+| :-------------------: | :-----------------------: |
+| RDBMS (PostgreSQL or MySQL) for structured data | Each module (sales analytics, forecasting, etc.) as a separate microservice |
+| NoSQL database (MongoDB or Couchbase) for unstructured data | Scalability and maintainability |³[3]
+
+| Cloud Deployment | Security Measures |
+| :--------------: | :--------------: |
+| AWS or Google Cloud Platform using Docker and Kubernetes | Encryption, HTTPS, security audits, GDPR compliance |
+
 
 
 <!--- Eraser file: https://app.eraser.io/workspace/lzNMy7FTtBIm4YmFxroq --->
