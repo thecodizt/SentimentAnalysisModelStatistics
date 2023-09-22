@@ -98,6 +98,14 @@ Hate speech and offensive language detection
 - XGBoost
 - AdaBoost
 
+Here is the literature survey for the papers mentioned in the page:
+
+| Year | Title | Techniques | Features | Performance | Dataset | Limitations |
+| ---- | ----- | ---------- | -------- | ----------- | ------- | ----------- |
+| 2023 | A deep learning approach using natural language processing and time-series forecasting towards enhanced food safety | NLP, TSF, RL | Product Named Entity Recognition, Product Recall Prediction, Food Safety Risk Analysis | F1-score: 0.94, Recall: 0.93, Precision: 0.95 for PNER; MAE: 0.12, RMSE: 0.16 for PRP; AUC: 0.87 for FSRA | FDA recall announcements, USDA recall announcements, OpenFDA API, Weather API | Limited to US data, requires manual labeling for PNER, relies on surrogate data for PRP |
+| 2019 | BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding | LLM, Transformer, Fine-tuning | Bidirectional language representation, Pre-training on large corpus, Fine-tuning on downstream tasks | GLUE score: 80.5%, MultiNLI accuracy: 86.7%, SQuAD v1.1 F1: 93.2%, SQuAD v2.0 F1: 83.1% | BooksCorpus, Wikipedia, GLUE, MultiNLI, SQuAD | Requires large amount of compute resources, suffers from pretrain-finetune discrepancy, vulnerable to adversarial attacks |
+| 2022 | Text Classification for Predicting Multi-level Product Categories | LLM, Text Classification, SVM, XGBoost | Product title classification, Dynamic masking of subcategories, Bilingual product titles | Accuracy: 0.92 for SVM, 0.93 for XGBoost, 0.96 for BERT-base, 0.97 for BERT-large | Getir dataset (Turkish and English product titles) | Limited to grocery products, requires fine-tuning for each level of categorization, does not consider product descriptions or images |
+
 
 
 <!--- Eraser file: https://app.eraser.io/workspace/lzNMy7FTtBIm4YmFxroq --->
